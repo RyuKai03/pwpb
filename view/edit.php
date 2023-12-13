@@ -68,7 +68,7 @@ public function edit($id_buku = null)
             <div class="panel panel-default">
 
                 <div class="panel-title">
-                    <?php if ($this->session->flashdata('success')): ?>
+                    <?php if ($this->session->flashdata('success') && isset($_POST['submit'])): ?>
                     <div class="kode-alert alert1">
                         <a href="#" class="closed">&times;</a>
                        <?php echo $this->session->flashdata('success'); ?>
@@ -122,7 +122,7 @@ public function edit($id_buku = null)
 
                                     <input value="<?php echo $table_buku->cover_buku ?>" class="form-control form-control-line" type="file" name="cover_buku">
                                 </div>
-                                <button type="submit" class="btn btn-default">Simpan</button>
+                                <button type="submit" class="btn btn-default" name="submit">Simpan</button>
                             </form>
 
                         </div>
