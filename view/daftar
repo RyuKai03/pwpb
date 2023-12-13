@@ -1,0 +1,130 @@
+<div class="content">
+
+    <!-- Start Page Header -->
+    <div class="page-header">
+        <h1 class="title">Rak Buku</h1>
+            <ol class="breadcrumb">
+                <li><a href="<?php echo site_url('') ?>">Dashboard</a></li>
+                <li class="active">Daftar Buku</li>
+            </ol>
+
+        
+        <div class="right">
+            <div class="btn-group" role="group" aria-label="...">
+                <a href="<?php echo site_url('daftar/add') ?>" class="btn btn-light"><i class="fa fa-plus"></i> Tambah Buku</a>
+            </div>
+        </div>
+        
+    </div>
+    <!-- End Page Header -->
+
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+<!-- START CONTAINER -->
+<div class="container-default">
+
+    <div class="row">
+
+        <!-- Start Panel -->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body table-responsive">
+
+                        <table id="listbuku" class="table display">
+                                <thead>
+                                        <tr>
+                                                <th>Gambar</th>
+                                                <th>Nama Buku</th>
+                                                <th>Penerbit</th>
+                                               <th>Aksi</th>
+                                                <!-- <?php if ($this->session->userdata('access')=='1'): ?>
+                                                <th width="150px">Aksi</th>
+                                                <?php endif;?> -->
+                                        </tr>
+                                </thead>
+
+                                <tfoot>
+                                        <tr>
+                                                <th>Gambar</th>
+                                                <th>Judul Buku</th>
+                                                <th>Penerbit</th>
+                                                <th>Aksi</th>
+                                                <!-- <?php if ($this->session->userdata('access')=='1'): ?>
+                                                <th>Aksi</th>
+                                                <?php endif;?> -->
+                                        </tr>
+                                </tfoot>
+
+                                <tbody>
+                                    <?php foreach ($table_buku as $itembuku): ?>
+                                        <tr>                                                 
+                                                <td><img src="<?php echo base_url('uploads/'.$itembuku->cover_buku) ?>" width="64" /></td>
+                                                <td><?php echo $itembuku->judul_buku ?></td>
+                                                <td><?php echo $itembuku->penerbit_buku ?></td>
+
+                                              
+                                              
+                                               <td>
+
+                                                  <a href="<?php echo site_url('daftar/detail/'.$itembuku->id_buku) ?>"class="btn btn-sm btn-default"><i class="fa fa-eye"></i>Detail</a>
+                                                    <a href="<?php echo site_url('daftar/edit/' . $itembuku->id_buku) ?>" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
+                                                    <a href="<?php echo site_url('daftar/hapus_buku/'.$itembuku->id_buku) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');"><i class="fa fa-trash"></i>Hapus</a>
+                                                </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                        </table>
+
+
+                </div>
+
+            </div>
+        </div>
+        <!-- End Panel -->
+
+
+    </div>
+
+</div>
+<!-- END CONTAINER -->
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
+<!-- Start Footer -->
+<div class="row footer">
+    <div class="col-md-6 text-left">
+    Copyright © 2015 <a href="http://themeforest.net/user/egemem/portfolio" target="_blank">Egemem</a> All rights reserved.
+    </div>
+    <div class="col-md-6 text-right">
+        Design and Developed by <a href="http://themeforest.net/user/egemem/portfolio" target="_blank">Egemem</a>
+    </div>
+</div>
+<!-- End Footer -->
+
+
+</div>
+
+<script>
+function deleteConfirm(url){
+    $('#btn-delete').attr('href', url);
+    $('#deleteModal').modal();
+}
+</script>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Apakah anda yakin?</h4>
+            </div>
+            <div class="modal-body">
+                Data yang sudah terhapus tidak dapat dikembalikan.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
+                <a id="btn-delete" class="btn btn-danger" href="#">Tetap Hapus</a>
+            </div>
+        </div>
+    </div>
+</div>
+
