@@ -100,10 +100,11 @@ class Daftar extends CI_Controller
     $validation = $this->form_validation;
     $validation->set_rules($daftar->rules());
 
-    if ($validation->run()) {
+    if ($this->input->post('submit') && $validation->run()) {
         $daftar->update();
         // $this->session->set_flashdata('success', 'Berhasil diperbarui');
         $this->session->set_flashdata('success', 'Berhasil diperbarui');
+        redirect('daftar');
         }
         
          $data["table_buku"] = $daftar->getById($id_buku);
