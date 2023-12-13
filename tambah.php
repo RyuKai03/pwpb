@@ -1,0 +1,116 @@
+<style>
+.parsley-errors-list {
+    list-style-type: none;
+    padding-left: 0;
+    /*padding-bottom: 5px;
+    margin-top: -15px;
+    margin-bottom: 0;*/
+    font-weight: 400;
+    font-size: 11px;
+}
+
+.parsley-errors-list.filled {
+    color: #D43F3A;
+    opacity: 1;
+}
+</style>
+
+
+<div class="content">
+
+    <!-- Start Page Header -->
+    <div class="page-header">
+        <h1 class="title">Tambah Buku</h1>
+            <ol class="breadcrumb">
+                <li><a href="<?php echo site_url('') ?>">Dashboard</a></li>
+                <li><a href="<?php echo site_url('daftar') ?>">Buku</a></li>
+                <li class="active">Tambah</li>
+            </ol>
+
+        <!-- Start Page Header Right Div -->
+        <div class="right">
+            <div class="btn-group" role="group" aria-label="...">
+                <a href="<?php echo site_url('daftar/') ?>" class="btn btn-light"><i class="fa fa-times"></i>Batal</a>
+            </div>
+        </div>
+        <!-- End Page Header Right Div -->
+
+    </div>
+    <!-- End Page Header -->
+
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+<!-- START CONTAINER -->
+<div class="container-default">
+
+
+<div class="row">
+
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+
+                <div class="panel-title">
+                    <?php if ($this->session->flashdata('success')): ?>
+                    <div class="kode-alert alert1">
+                        <a href="#" class="closed">&times;</a>
+                       <?php echo $this->session->flashdata('success'); ?>
+                    </div>
+                    <?php endif; ?>
+
+                </div>
+
+                        <div class="panel-body">
+                            <form action="<?php echo site_url('daftar/add') ?>" id="addbuku" method="post" enctype="multipart/form-data" data-parsley-validate>
+                                <div class="form-group">
+                                    <label for="example3" class="form-label">Judul Buku</label>
+                                    <input class="form-control form-control-line <?php echo form_error('judul_buku') ? 'is-invalid':'' ?>" type="text" name="judul_buku" placeholder="judul buku" required/>
+                                    <div class="invalid-feedback">
+                                        <?php echo form_error('judul_buku') ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example5"  class="form-label">Penerbit Buku</label>
+                                    <textarea class="form-control form-control-line" name="penerbit_buku" placeholder="penerbit buku"></textarea>
+                                    <div class="invalid-feedback has-error">
+                                        <?php echo form_error('penerbit_buku') ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example4" class="form-label">Kategori Buku</label>
+                                    <input class="form-control form-control-line <?php echo form_error('kategori_buku') ? 'is-invalid':'' ?>" type="text" name="kategori_buku" placeholder="kategori buku" required/>
+                                    <div class="invalid-feedback has-error">
+                                        <?php echo form_error('kategori_buku') ?>
+                                    </div>
+                                </div>
+                                  <div class="form-group">
+                                    <label for="example4" class="form-label">Tanggal Terbit</label>
+                                    <input class="form-control form-control-line <?php echo form_error('tanggal_terbit') ? 'is-invalid':'' ?>" type="date" name="tanggal_terbit" placeholder="tanggal terbit" required/>
+                                    <div class="invalid-feedback has-error">
+                                        <?php echo form_error('tanggal_terbit') ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Cover Buku</label>
+                                    <input class="form-control form-control-line" type="file" name="cover_buku" />
+                                </div>
+                                <button type="submit" class="btn btn-default">Simpan</button>
+                            </form>
+
+                        </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- END CONTAINER -->
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#addbuku').parsley();
+});
+</script>
