@@ -1,0 +1,67 @@
+//edit dan tambah
+<style>
+    .parsley-errors-list {
+        list-style-type: none;
+        padding-left: 0;
+        font-weight: 400;
+        font-size: 11px;
+    }
+
+    .parsley-errors-list.filled {
+        color: #D43F3A;
+        opacity: 1;
+    }
+
+    /* Styling notifikasi */
+    .kode-alert {
+        position: relative;
+        padding: 15px;
+        margin: 10px 0;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .kode-alert.alert1 {
+        background-color: ##00a2ff;
+        border-color: white;
+        color: #ffffff
+    }
+
+    .closed {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #a94442;
+        text-decoration: none;
+    }
+</style>
+
+
+<!-- START CONTAINER -->
+<div class="container-default">
+
+
+<div class="row">
+
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+
+                <div class="kode-alert alert1" id="notification">
+    <a href="#" class="closed" onclick="closeNotification()">&times;</a>
+    Notifikasi berhasil disimpan.
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Optional: Menyembunyikan notifikasi setelah beberapa detik
+        setTimeout(function() {
+            $('#notification').fadeOut();
+        }, 5000); // Misalnya, menyembunyikan notifikasi setelah 5 detik
+    });
+
+    function closeNotification() {
+        $('#notification').fadeOut();
+    }
+</script>
