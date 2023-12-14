@@ -1,18 +1,38 @@
 <style>
-.parsley-errors-list {
-    list-style-type: none;
-    padding-left: 0;
-    /*padding-bottom: 5px;
-    margin-top: -15px;
-    margin-bottom: 0;*/
-    font-weight: 400;
-    font-size: 11px;
-}
+    .parsley-errors-list {
+        list-style-type: none;
+        padding-left: 0;
+        font-weight: 400;
+        font-size: 11px;
+    }
 
-.parsley-errors-list.filled {
-    color: #D43F3A;
-    opacity: 1;
-}
+    .parsley-errors-list.filled {
+        color: #D43F3A;
+        opacity: 1;
+    }
+
+    /* Styling notifikasi */
+    .kode-alert {
+        position: relative;
+        padding: 15px;
+        margin: 10px 0;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .kode-alert.alert1 {
+        background-color: ##00a2ff;
+        border-color: white;
+        color: #ffffff
+    }
+
+    .closed {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #a94442;
+        text-decoration: none;
+    }
 </style>
 
 
@@ -30,7 +50,7 @@
         <!-- Start Page Header Right Div -->
         <div class="right">
             <div class="btn-group" role="group" aria-label="...">
-                <a href="<?php echo site_url('daftar/') ?>" class="btn btn-light"><i class="fa fa-times"></i>Batal</a>
+                <a href="<?php echo site_url('daftar/') ?>" class="btn btn-light"><i class="fa fa-times"></i> Batal</a>
             </div>
         </div>
         <!-- End Page Header Right Div -->
@@ -49,15 +69,26 @@
         <div class="col-md-6">
             <div class="panel panel-default">
 
-                <div class="panel-title">
-                    <?php if ($this->session->flashdata('success')): ?>
-                    <div class="kode-alert alert1">
-                        <a href="#" class="closed">&times;</a>
-                       <?php echo $this->session->flashdata('success'); ?>
-                    </div>
-                    <?php endif; ?>
+                <div class="kode-alert alert1" id="notification">
+    <a href="#" class="closed" onclick="closeNotification()">&times;</a>
+    Notifikasi berhasil disimpan.
+</div>
 
-                </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Optional: Menyembunyikan notifikasi setelah beberapa detik
+        setTimeout(function() {
+            $('#notification').fadeOut();
+        }, 5000); // Misalnya, menyembunyikan notifikasi setelah 5 detik
+    });
+
+    function closeNotification() {
+        $('#notification').fadeOut();
+    }
+</script>
+
+                
 
                         <div class="panel-body">
                             <form action="<?php echo site_url('daftar/add') ?>" id="addbuku" method="post" enctype="multipart/form-data" data-parsley-validate>
@@ -70,7 +101,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="example5"  class="form-label">Penerbit Buku</label>
-                                    <textarea class="form-control form-control-line" name="penerbit_buku" placeholder="penerbit buku"></textarea>
+                                    <input class="form-control form-control-line" name="penerbit_buku" placeholder="penerbit buku" />
                                     <div class="invalid-feedback has-error">
                                         <?php echo form_error('penerbit_buku') ?>
                                     </div>
